@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-Command", "cd 'D:/Cony-AI/Portfolio'; $listener = [System.Net.HttpListener]::new(); $listener.Prefixes.Add('http://localhost:3500/'); $listener.Start(); Write-Host 'Listening on port 3500'; while($listener.IsListening) { $ctx = $listener.GetContext(); $path = 'D:/Cony-AI/Portfolio' + $ctx.Request.Url.LocalPath; if($ctx.Request.Url.LocalPath -eq '/') { $path = 'D:/Cony-AI/Portfolio/index.html' }; $bytes = [IO.File]::ReadAllBytes($path); $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length); $ctx.Response.Close() }"],
+      "port": 3500
+    }
+  ]
+}

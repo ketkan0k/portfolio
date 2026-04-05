@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pandoc \"D:/Cony-AI/Portfolio/Resume_Ketkanok_EN.docx\" -o /tmp/resume.md)",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p resume_unpacked)",
+      "Bash(python \"C:/Users/ketkanok.j/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/cd09cfcf-a5b6-4244-812a-04dac09310c2/29bf3b91-5edf-461a-9377-c131fb176335/skills/docx/scripts/office/unpack.py\" \"D:/Cony-AI/Portfolio/Resume_Ketkanok_EN.docx\" /tmp/resume_unpacked/)",
+      "Bash(cp \"D:/Cony-AI/Portfolio/Resume_Ketkanok_EN.docx\" resume.docx)",
+      "Bash(unzip -o resume.docx \"word/document.xml\" -d resume_unpacked/)",
+      "Bash(cmd.exe /c \"node --version && npm list -g docx 2>nul | findstr docx\")",
+      "Bash(powershell -Command \":*)"
+    ]
+  }
+}

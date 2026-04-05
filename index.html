@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ketkanok Jongcham — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Sarabun:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1A2744;
+      --navy2:   #243159;
+      --gold:    #C4A96B;
+      --goldbg:  rgba(196,169,107,0.1);
+      --cream:   #F9F6F0;
+      --beige:   #EDE6DA;
+      --char:    #2C2C2C;
+      --gray:    #8A8A8A;
+      --white:   #FFFFFF;
+      --ease:    cubic-bezier(0.4,0,0.2,1);
+      --sw:      270px;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'DM Sans', 'Sarabun', sans-serif;
+      background: var(--cream);
+      color: var(--char);
+      overflow: hidden;
+    }
+
+    /* ── LAYOUT ─────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sw) 1fr;
+      height: 100vh;
+    }
+
+    /* ── SIDEBAR ────────────────────────── */
+    .sidebar {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      padding: 2.75rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 50;
+    }
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: -70px; right: -70px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(196,169,107,0.07);
+      pointer-events: none;
+    }
+    .sid-id { margin-bottom: 0.5rem; }
+    .sid-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .sid-title {
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+      font-weight: 300;
+    }
+    .sid-line {
+      width: 26px; height: 1px;
+      background: var(--gold); opacity: 0.5;
+      margin: 1.5rem 0 1.75rem;
+    }
+    nav { flex: 1; }
+    nav ul { list-style: none; }
+    nav ul li { margin-bottom: 2px; }
+    nav ul li a {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.55rem 0.7rem;
+      color: rgba(255,255,255,0.38);
+      text-decoration: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: color .26s var(--ease), background .26s var(--ease);
+      position: relative; font-weight: 400;
+    }
+    nav ul li a .nnum {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 0.58rem;
+      color: var(--gold); opacity: 0.48;
+      min-width: 16px; transition: opacity .26s;
+    }
+    nav ul li a:hover { color: rgba(255,255,255,0.72); }
+    nav ul li a.active { color: var(--white); background: var(--goldbg); }
+    nav ul li a.active .nnum { opacity: 1; }
+    nav ul li a.active::before {
+      content: '';
+      position: absolute; left: 0; top: 18%; height: 64%; width: 2px;
+      background: var(--gold); border-radius: 1px;
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.4rem; margin-bottom: 0.6rem;
+    }
+    .lang-btn {
+      display: flex; align-items: center; gap: 0.35rem;
+      background: none; border: none; cursor: pointer;
+      padding: 0.28rem 0.5rem; border-radius: 3px;
+      font-size: 0.68rem; color: rgba(255,255,255,0.38);
+      font-family: inherit; letter-spacing: 0.06em;
+      transition: color .22s, background .22s;
+    }
+    .lang-btn.active { color: var(--white); background: rgba(255,255,255,0.06); }
+    .lang-btn:hover { color: rgba(255,255,255,0.65); }
+    .lang-sep { width: 1px; height: 12px; background: rgba(255,255,255,0.12); }
+
+    /* Sidebar contact */
+    .sid-contact {
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .sid-contact a {
+      display: block; color: rgba(255,255,255,0.28);
+      text-decoration: none; font-size: 0.63rem;
+      margin-bottom: 0.38rem; letter-spacing: 0.02em;
+      transition: color .22s;
+    }
+    .sid-contact a:hover { color: var(--gold); }
+
+    /* ── MOBILE HEADER ──────────────────── */
+    .mob-header {
+      display: none; position: fixed;
+      top: 0; left: 0; right: 0; height: 54px;
+      background: var(--navy); z-index: 300;
+      align-items: center; padding: 0 1.1rem;
+      justify-content: space-between;
+    }
+    .mob-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; color: var(--white); font-weight: 600;
+    }
+    .mob-right { display: flex; align-items: center; gap: 0.6rem; }
+    .mob-lang { display: flex; align-items: center; gap: 0.25rem; }
+    .mob-lang .lang-btn { padding: 0.2rem 0.3rem; font-size: 0.62rem; }
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      padding: 0.3rem; display: flex; flex-direction: column; gap: 4px;
+    }
+    .hamburger span {
+      display: block; width: 20px; height: 1.5px;
+      background: var(--white); transition: all .28s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(-4px); }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+
+    /* Mobile nav drawer */
+    .mob-nav {
+      display: none; position: fixed;
+      top: 54px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); z-index: 200;
+      padding: 2rem 1.5rem; flex-direction: column;
+      gap: 2px; overflow-y: auto;
+    }
+    .mob-nav.open { display: flex; }
+    .mob-nav a {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.85rem 1rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; font-size: 0.95rem;
+      border-radius: 4px; transition: all .22s; letter-spacing: 0.04em;
+    }
+    .mob-nav a .nnum {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 0.7rem;
+      color: var(--gold); opacity: 0.55; min-width: 20px;
+    }
+    .mob-nav a.active { color: var(--white); background: var(--goldbg); }
+    .mob-nav-contact {
+      margin-top: auto; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mob-nav-contact a {
+      font-size: 0.78rem; padding: 0.45rem 1rem;
+      letter-spacing: 0.02em; background: none;
+    }
+
+    /* ── MAIN ───────────────────────────── */
+    .main { overflow-y: auto; overflow-x: hidden; }
+    .main::-webkit-scrollbar { width: 4px; }
+    .main::-webkit-scrollbar-track { background: transparent; }
+    .main::-webkit-scrollbar-thumb { background: var(--beige); border-radius: 2px; }
+
+    /* ── PAGE BASE ──────────────────────── */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; animation: pgIn .42s var(--ease) both; }
+    @keyframes pgIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Page header */
+    .ph { margin-bottom: 3.5rem; }
+    .ph .ey {
+      font-size: 0.6rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .ph h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3vw, 2.75rem);
+      color: var(--navy); font-weight: 600; line-height: 1.12;
+    }
+    .ph h1 em { font-style: italic; font-weight: 400; }
+    .ph-line { width: 40px; height: 1px; background: var(--gold); margin-top: 1.25rem; }
+
+    /* ═══════════════════════
+       HOME
+    ═══════════════════════ */
+    .home-inner {
+      padding: clamp(3rem,6vw,6rem) clamp(2rem,5vw,5rem);
+      display: flex; flex-direction: column;
+      justify-content: center; min-height: 100vh;
+      max-width: 700px;
+    }
+    .home-ey {
+      font-size: 0.6rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.8rem;
+    }
+    .home-h {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem,5vw,4rem);
+      line-height: 1.08; color: var(--navy);
+      font-weight: 700; margin-bottom: 1.8rem;
+    }
+    .home-h em { font-style: italic; font-weight: 400; }
+    .home-sub {
+      font-size: 0.9rem; color: var(--gray);
+      line-height: 1.9; max-width: 460px;
+      margin-bottom: 3.5rem; font-weight: 300;
+    }
+    .home-stats {
+      display: flex; gap: clamp(1.5rem,3vw,3rem);
+      margin-bottom: 3.5rem; flex-wrap: wrap;
+    }
+    .stat .n {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; color: var(--navy);
+      font-weight: 600; line-height: 1;
+    }
+    .stat .l {
+      font-size: 0.6rem; color: var(--gray);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-top: 0.3rem; font-weight: 300;
+    }
+    .home-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 2rem; background: var(--navy);
+      color: var(--white); text-decoration: none;
+      font-size: 0.68rem; letter-spacing: 0.12em;
+      text-transform: uppercase; transition: background .26s, color .26s;
+      width: fit-content; cursor: pointer;
+    }
+    .home-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* ═══════════════════════
+       ABOUT
+    ═══════════════════════ */
+    .about-wrap { padding: clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 185px 1fr;
+      gap: clamp(2rem,4vw,4rem); align-items: start;
+    }
+    .about-photo-wrap { position: relative; flex-shrink: 0; }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: top; display: block;
+      position: relative; z-index: 1;
+    }
+    .about-photo-wrap::after {
+      content: '';
+      position: absolute; bottom: -10px; left: -10px;
+      width: 52%; height: 52%;
+      border: 1px solid var(--gold); opacity: 0.28; pointer-events: none;
+      z-index: 0;
+    }
+    .about-body p {
+      font-size: 0.86rem; line-height: 1.95;
+      color: #525252; margin-bottom: 1rem; font-weight: 300;
+    }
+    .about-meta {
+      margin-top: 2rem; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 1rem 2rem;
+    }
+    .meta-item .ml {
+      font-size: 0.57rem; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--gray); margin-bottom: 0.2rem;
+    }
+    .meta-item .mv {
+      font-size: 0.79rem; color: var(--navy);
+      font-weight: 500; border-left: 2px solid var(--gold);
+      padding-left: 0.58rem;
+    }
+
+    /* ═══════════════════════
+       EXPERIENCE
+    ═══════════════════════ */
+    .exp-wrap { padding: clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem); }
+    .timeline-item {
+      display: grid; grid-template-columns: 148px 1fr;
+      gap: 2.5rem; padding-bottom: 2.75rem;
+      margin-bottom: 2.75rem; border-bottom: 1px solid var(--beige);
+    }
+    .timeline-item:last-of-type {
+      border-bottom: none; padding-bottom: 0; margin-bottom: 0;
+    }
+    .t-date { text-align: right; padding-top: 0.1rem; }
+    .t-period { font-size: 0.68rem; color: var(--gold); font-weight: 500; }
+    .t-co { font-size: 0.63rem; color: var(--gray); line-height: 1.55; margin-top: 0.42rem; }
+    .t-badge {
+      display: inline-block; padding: 0.14rem 0.48rem;
+      background: var(--goldbg); color: var(--gold);
+      font-size: 0.57rem; letter-spacing: 0.1em;
+      text-transform: uppercase; border-radius: 2px; margin-bottom: 0.55rem;
+    }
+    .t-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; color: var(--navy);
+      font-weight: 500; margin-bottom: 0.85rem;
+    }
+    .t-list { list-style: none; }
+    .t-list li {
+      font-size: 0.77rem; color: #575757; line-height: 1.8;
+      padding-left: 1rem; position: relative;
+      margin-bottom: 0.3rem; font-weight: 300;
+    }
+    .t-list li::before {
+      content: '—'; position: absolute; left: 0;
+      color: var(--gold); font-size: 0.63rem;
+    }
+
+    /* Projects section */
+    .proj-section {
+      margin-top: 4rem; padding-top: 3.5rem;
+      border-top: 1px solid var(--beige);
+    }
+    .proj-section .ph { margin-bottom: 2.5rem; }
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px,1fr));
+      gap: 1.5rem;
+    }
+    .proj-card {
+      background: var(--white); border: 1px solid var(--beige);
+      cursor: pointer; overflow: hidden;
+      transition: transform .26s var(--ease), box-shadow .26s, border-color .26s;
+    }
+    .proj-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.09);
+      border-color: var(--gold);
+    }
+    .proj-card-img {
+      width: 100%; height: 155px;
+      object-fit: cover; display: block;
+    }
+    .proj-card-body { padding: 1.2rem 1.25rem; }
+    .proj-card-tag {
+      font-size: 0.57rem; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.45rem;
+    }
+    .proj-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.93rem; color: var(--navy);
+      margin-bottom: 0.55rem; line-height: 1.35;
+    }
+    .proj-card-sum {
+      font-size: 0.73rem; color: var(--gray);
+      line-height: 1.7; font-weight: 300;
+    }
+    .proj-read {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      margin-top: 0.9rem; font-size: 0.63rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--navy); font-weight: 500;
+    }
+    .proj-read::after { content: '→'; color: var(--gold); }
+
+    /* ═══════════════════════
+       SKILLS
+    ═══════════════════════ */
+    .skills-wrap { padding: clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem); }
+    .skills-3col {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2.5rem; margin-bottom: 4rem;
+    }
+    .sk-cat h3 {
+      font-size: 0.57rem; text-transform: uppercase;
+      letter-spacing: 0.22em; color: var(--gold);
+      padding-bottom: 0.7rem; border-bottom: 1px solid var(--beige);
+      margin-bottom: 0.95rem;
+    }
+    .sk-tags { display: flex; flex-wrap: wrap; gap: 0.33rem; }
+    .sk-tag {
+      display: inline-block; padding: 0.33rem 0.65rem;
+      background: var(--white); border: 1px solid var(--beige);
+      font-size: 0.72rem; color: var(--char); font-weight: 300;
+      transition: border-color .2s, color .2s;
+    }
+    .sk-tag:hover { border-color: var(--gold); color: var(--navy); }
+
+    /* Languages bar */
+    .lang-section { margin-bottom: 4rem; }
+    .lang-section-title {
+      font-size: 0.57rem; text-transform: uppercase;
+      letter-spacing: 0.22em; color: var(--gold);
+      padding-bottom: 0.7rem; border-bottom: 1px solid var(--beige);
+      margin-bottom: 1.2rem;
+    }
+    .lang-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .lang-item .lname {
+      font-size: 0.8rem; color: var(--navy); font-weight: 500;
+    }
+    .lang-item .llvl {
+      font-size: 0.6rem; color: var(--gray);
+      margin-top: 0.14rem; margin-bottom: 0.38rem;
+    }
+    .lang-bar { width: 110px; height: 1.5px; background: var(--beige); }
+    .lang-bar-f { height: 100%; background: var(--gold); }
+
+    /* Certifications */
+    .cert-ph-ey {
+      font-size: 0.57rem; text-transform: uppercase;
+      letter-spacing: 0.28em; color: var(--gold); margin-bottom: 0.45rem;
+    }
+    .cert-ph h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; color: var(--navy);
+    }
+    .cert-ph-line {
+      width: 34px; height: 1px; background: var(--gold);
+      margin-top: 0.85rem; margin-bottom: 1.4rem;
+    }
+    .cert-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--beige);
+      cursor: pointer;
+      transition: padding-left .24s var(--ease);
+    }
+    .cert-item:hover { padding-left: 0.45rem; }
+    .cert-logo {
+      width: 50px; height: 50px;
+      object-fit: contain; flex-shrink: 0;
+      padding: 4px; background: var(--white);
+      border: 1px solid var(--beige);
+    }
+    .cert-logo-round {
+      width: 40px; height: 40px;
+      object-fit: cover; border-radius: 50%;
+      flex-shrink: 0; border: 1px solid var(--beige);
+    }
+    .cert-info { flex: 1; }
+    .cert-name {
+      font-size: 0.84rem; color: var(--navy); font-weight: 500;
+      text-decoration: underline; text-decoration-color: transparent;
+      transition: text-decoration-color .22s;
+    }
+    .cert-item:hover .cert-name { text-decoration-color: var(--gold); }
+    .cert-meta { font-size: 0.67rem; color: var(--gray); margin-top: 0.16rem; }
+    .cert-hint {
+      margin-left: auto; font-size: 0.58rem; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      opacity: 0; transition: opacity .22s; flex-shrink: 0;
+    }
+    .cert-item:hover .cert-hint { opacity: 1; }
+
+    /* ═══════════════════════
+       EDUCATION
+    ═══════════════════════ */
+    .edu-wrap { padding: clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem); max-width: 760px; }
+    .edu-cards { display: grid; gap: 1.15rem; }
+    .edu-card {
+      padding: 1.55rem 1.75rem; background: var(--white);
+      border: 1px solid var(--beige); border-left: 3px solid var(--gold);
+      transition: transform .24s var(--ease), box-shadow .24s;
+    }
+    .edu-card:hover { transform: translateX(5px); box-shadow: 0 4px 18px rgba(0,0,0,0.05); }
+    .edu-deg { font-family: 'Playfair Display', serif; font-size: 0.98rem; color: var(--navy); margin-bottom: 0.3rem; }
+    .edu-school { font-size: 0.74rem; color: var(--gray); margin-bottom: 0.7rem; }
+    .edu-chips { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .edu-chip { font-size: 0.65rem; color: var(--gold); font-weight: 500; }
+
+    /* ═══════════════════════
+       CONTACT
+    ═══════════════════════ */
+    .contact-wrap { padding: clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem); max-width: 620px; }
+    .contact-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--navy);
+      line-height: 1.75; font-style: italic;
+      margin-bottom: 3rem; padding-left: 1.3rem;
+      border-left: 2px solid var(--gold);
+    }
+    .contact-cards { display: flex; flex-direction: column; gap: 0.85rem; }
+    .contact-card {
+      display: flex; align-items: center; gap: 1.3rem;
+      padding: 1.2rem 1.4rem; background: var(--white);
+      border: 1px solid var(--beige); text-decoration: none;
+      transition: border-color .24s, transform .24s var(--ease), box-shadow .24s;
+    }
+    .contact-card:hover { border-color: var(--gold); transform: translateX(5px); box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+    .cc-icon {
+      width: 40px; height: 40px; background: var(--navy);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cc-icon svg {
+      width: 16px; height: 16px; stroke: var(--gold);
+      fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .cc-lbl { font-size: 0.57rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gray); margin-bottom: 0.2rem; }
+    .cc-val { font-size: 0.84rem; color: var(--navy); font-weight: 500; }
+
+    /* ═══════════════════════
+       PDF MODAL
+    ═══════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(8,14,28,0.88);
+      z-index: 1000; display: flex;
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-overlay.hidden { display: none; }
+    .pdf-wrap {
+      position: relative; width: min(860px,95vw);
+      height: min(90vh,90vh); background: #eee;
+      display: flex; flex-direction: column;
+    }
+    .pdf-hdr {
+      background: var(--navy); padding: 0.7rem 1.2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .pdf-hdr-title { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.07em; }
+    .modal-close-btn {
+      background: none; border: none;
+      color: rgba(255,255,255,0.55); font-size: 1.1rem;
+      cursor: pointer; padding: 0.15rem 0.4rem;
+      transition: color .2s; line-height: 1;
+    }
+    .modal-close-btn:hover { color: var(--white); }
+    .pdf-frame-wrap { position: relative; flex: 1; overflow: hidden; }
+    .pdf-iframe { width: 100%; height: 100%; border: none; display: block; }
+    .pdf-wm {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 10;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════
+       PROJECT MODAL
+    ═══════════════════════ */
+    .proj-wrap {
+      position: relative; width: min(920px,95vw);
+      max-height: 90vh; background: var(--cream);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .proj-hdr {
+      background: var(--navy); padding: 0.7rem 1.2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .proj-hdr-tag { font-size: 0.58rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; }
+    .proj-body { overflow-y: auto; flex: 1; }
+    .proj-body::-webkit-scrollbar { width: 3px; }
+    .proj-body::-webkit-scrollbar-thumb { background: var(--beige); }
+    .proj-gallery { position: relative; }
+    .proj-main-img {
+      width: 100%; max-height: 400px;
+      object-fit: cover; display: block;
+    }
+    .proj-thumbs {
+      display: flex; gap: 3px; padding: 3px;
+      background: rgba(26,39,68,0.9);
+    }
+    .proj-thumb {
+      width: 72px; height: 46px;
+      object-fit: cover; cursor: pointer;
+      opacity: 0.48; transition: opacity .18s; flex-shrink: 0;
+    }
+    .proj-thumb.act { opacity: 1; }
+    .proj-thumb:hover { opacity: 0.82; }
+    .proj-content { padding: 2rem 2.4rem; }
+    .proj-modal-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem; color: var(--navy); margin-bottom: 0.42rem;
+    }
+    .proj-modal-period { font-size: 0.68rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 1.4rem; }
+    .proj-modal-desc {
+      font-size: 0.83rem; color: #525252;
+      line-height: 1.9; font-weight: 300; margin-bottom: 1.4rem;
+    }
+    .proj-modal-list { list-style: none; margin-bottom: 1.4rem; }
+    .proj-modal-list li {
+      font-size: 0.8rem; color: #525252; line-height: 1.8;
+      padding-left: 1rem; position: relative;
+      margin-bottom: 0.3rem; font-weight: 300;
+    }
+    .proj-modal-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.63rem; }
+    .proj-logos {
+      display: flex; gap: 1rem; align-items: center;
+      flex-wrap: wrap; padding-top: 1.2rem; margin-top: 1rem;
+      border-top: 1px solid var(--beige);
+    }
+    .proj-logo { height: 32px; object-fit: contain; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-top: 1.2rem; }
+    .proj-tag {
+      padding: 0.28rem 0.6rem; background: var(--white);
+      border: 1px solid var(--beige); font-size: 0.68rem; color: var(--navy);
+    }
+
+    /* ═══════════════════════
+       RESPONSIVE
+    ═══════════════════════ */
+    @media (max-width: 900px) {
+      .skills-3col { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      html, body { overflow: auto; }
+      .layout { display: block; height: auto; }
+      .sidebar { display: none; }
+      .mob-header { display: flex; }
+      .main { padding-top: 54px; overflow: visible; height: auto; }
+      .page { min-height: auto; }
+      .home-inner { min-height: calc(100vh - 54px); padding: 3rem 1.5rem; }
+      .home-h { font-size: clamp(2.2rem,7vw,3rem); }
+      .about-wrap, .exp-wrap, .skills-wrap, .edu-wrap, .contact-wrap { padding: 2.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-wrap { width: 150px; }
+      .about-meta { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.7rem; }
+      .t-date { text-align: left; }
+      .skills-3col { grid-template-columns: 1fr; gap: 2rem; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .proj-content { padding: 1.5rem; }
+      .pdf-wrap { height: 78vh; }
+    }
+    @media (max-width: 480px) {
+      .home-stats { gap: 1.2rem; }
+      .stat .n { font-size: 1.75rem; }
+      .about-meta { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR (desktop) ══ -->
+  <aside class="sidebar">
+    <div class="sid-id">
+      <div class="sid-name">Ketkanok<br>Jongcham</div>
+      <div class="sid-title" data-en="Product Owner · Project Manager" data-th="Product Owner · Project Manager">Product Owner · Project Manager</div>
+    </div>
+    <div class="sid-line"></div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active" data-page="home"><span class="nnum">01</span><span data-en="Home" data-th="หน้าหลัก">Home</span></a></li>
+        <li><a href="#" data-page="about"><span class="nnum">02</span><span data-en="About" data-th="เกี่ยวกับ">About</span></a></li>
+        <li><a href="#" data-page="experience"><span class="nnum">03</span><span data-en="Experience" data-th="ประสบการณ์">Experience</span></a></li>
+        <li><a href="#" data-page="skills"><span class="nnum">04</span><span data-en="Skills" data-th="ทักษะ">Skills</span></a></li>
+        <li><a href="#" data-page="education"><span class="nnum">05</span><span data-en="Education" data-th="การศึกษา">Education</span></a></li>
+        <li><a href="#" data-page="contact"><span class="nnum">06</span><span data-en="Contact" data-th="ติดต่อ">Contact</span></a></li>
+      </ul>
+    </nav>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep"></span>
+      <button class="lang-btn" data-lang="th" onclick="setLang('th')">TH</button>
+    </div>
+    <div class="sid-contact">
+      <a href="mailto:7.ketkan0k@gmail.com">7.ketkan0k@gmail.com</a>
+      <a href="tel:0926461283">092-646-1283</a>
+      <a href="https://linkedin.com/in/ketkanok-jongcham" target="_blank">LinkedIn ↗</a>
+    </div>
+  </aside>
+
+  <!-- ══ MOBILE HEADER ══ -->
+  <header class="mob-header">
+    <div class="mob-name">Ketkanok Jongcham</div>
+    <div class="mob-right">
+      <div class="mob-lang">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep"></span>
+        <button class="lang-btn" data-lang="th" onclick="setLang('th')">TH</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMobNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ MOBILE NAV DRAWER ══ -->
+  <div class="mob-nav" id="mobNav">
+    <a href="#" data-page="home" onclick="navMob('home',this)"><span class="nnum">01</span><span data-en="Home" data-th="หน้าหลัก">Home</span></a>
+    <a href="#" data-page="about" onclick="navMob('about',this)"><span class="nnum">02</span><span data-en="About" data-th="เกี่ยวกับ">About</span></a>
+    <a href="#" data-page="experience" onclick="navMob('experience',this)"><span class="nnum">03</span><span data-en="Experience" data-th="ประสบการณ์">Experience</span></a>
+    <a href="#" data-page="skills" onclick="navMob('skills',this)"><span class="nnum">04</span><span data-en="Skills" data-th="ทักษะ">Skills</span></a>
+    <a href="#" data-page="education" onclick="navMob('education',this)"><span class="nnum">05</span><span data-en="Education" data-th="การศึกษา">Education</span></a>
+    <a href="#" data-page="contact" onclick="navMob('contact',this)"><span class="nnum">06</span><span data-en="Contact" data-th="ติดต่อ">Contact</span></a>
+    <div class="mob-nav-contact">
+      <a href="mailto:7.ketkan0k@gmail.com">7.ketkan0k@gmail.com</a>
+      <a href="tel:0926461283">092-646-1283</a>
+    </div>
+  </div>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <main class="main">
+
+    <!-- ─── HOME ─────────────────────────── -->
+    <section id="home" class="page active">
+      <div class="home-inner">
+        <p class="home-ey" data-en="Portfolio — Product &amp; Technology" data-th="พอร์ตโฟลิโอ — ผลิตภัณฑ์และเทคโนโลยี">Portfolio — Product &amp; Technology</p>
+        <h1 class="home-h" data-en-html="Turning Vision<br>Into <em>Digital</em><br>Reality" data-th-html="เปลี่ยนวิสัยทัศน์<br>สู่ความเป็นจริง<br><em>ทางดิจิทัล</em>">Turning Vision<br>Into <em>Digital</em><br>Reality</h1>
+        <p class="home-sub" data-en="5+ years crafting enterprise digital products — from concept to go-live — with precision, care, and a relentless pursuit of quality." data-th="ประสบการณ์กว่า 5 ปีในการขับเคลื่อนผลิตภัณฑ์ดิจิทัลระดับองค์กร ตั้งแต่แนวคิดจนถึง Go-Live ด้วยความแม่นยำ ใส่ใจ และมุ่งมั่นในคุณภาพ">5+ years crafting enterprise digital products — from concept to go-live — with precision, care, and a relentless pursuit of quality.</p>
+        <div class="home-stats">
+          <div class="stat">
+            <div class="n">5+</div>
+            <div class="l" data-en="Years Experience" data-th="ปีประสบการณ์">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="n">8</div>
+            <div class="l" data-en="Products Owned" data-th="ผลิตภัณฑ์ที่ดูแล">Products Owned</div>
+          </div>
+          <div class="stat">
+            <div class="n">100+</div>
+            <div class="l" data-en="Stakeholders Led" data-th="ผู้มีส่วนได้ส่วนเสีย">Stakeholders Led</div>
+          </div>
+        </div>
+        <a class="home-cta" onclick="navigate('contact')" data-en="Let's Connect →" data-th="ติดต่อฉัน →">Let's Connect →</a>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─────────────────────────── -->
+    <section id="about" class="page">
+      <div class="about-wrap">
+        <div class="ph">
+          <div class="ey" data-en="Who I Am" data-th="เกี่ยวกับฉัน">Who I Am</div>
+          <h1 data-en-html="The Story<br><em>Behind the Work</em>" data-th-html="เรื่องราว<br><em>เบื้องหลังผลงาน</em>">The Story<br><em>Behind the Work</em></h1>
+          <div class="ph-line"></div>
+        </div>
+        <div class="about-grid">
+          <div class="about-photo-wrap">
+            <img class="about-photo" src="Pic_About.jpg" alt="Ketkanok Jongcham">
+          </div>
+          <div class="about-body">
+            <p data-en="I'm a Product Owner and Project Manager with over 5 years of experience leading end-to-end digital product development in the real estate industry at Noble Development PCL — one of Thailand's leading property developers." data-th="ฉันเป็น Product Owner และ Project Manager ที่มีประสบการณ์กว่า 5 ปีในการพัฒนาผลิตภัณฑ์ดิจิทัลในธุรกิจอสังหาริมทรัพย์ที่ Noble Development PCL — หนึ่งในผู้พัฒนาอสังหาริมทรัพย์ชั้นนำของไทย">I'm a Product Owner and Project Manager with over 5 years of experience leading end-to-end digital product development in the real estate industry at Noble Development PCL — one of Thailand's leading property developers.</p>
+            <p data-en="My work spans the full product lifecycle: translating C-Level business direction into structured development plans, hands-on UX/UI review in Figma, QA oversight, UAT coordination, user training, and post-launch support." data-th="งานของฉันครอบคลุมวงจรชีวิตผลิตภัณฑ์ทั้งหมด ตั้งแต่การแปลงทิศทางธุรกิจจาก C-Level เป็นแผนพัฒนาที่ชัดเจน การรีวิว UX/UI ใน Figma การควบคุมคุณภาพ UAT การฝึกอบรม และการสนับสนุนหลัง Go-Live">My work spans the full product lifecycle: translating C-Level business direction into structured development plans, hands-on UX/UI review in Figma, QA oversight, UAT coordination, user training, and post-launch support.</p>
+            <p data-en="I currently own and manage 8+ digital platforms — POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment) — serving as the company's sole Product Owner for its entire digital ecosystem." data-th="ปัจจุบันดูแลและบริหารแพลตฟอร์มดิจิทัล 8+ ระบบ ทั้ง POS (CRM, Booking, Contract, Transfer) และ Non-POS (Noble ID, Website, CMS, CDP, Payment) ในฐานะ Product Owner เพียงคนเดียวของระบบดิจิทัลทั้งบริษัท">I currently own and manage 8+ digital platforms — POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment) — serving as the company's sole Product Owner for its entire digital ecosystem.</p>
+            <p data-en="Before stepping into product roles, I spent 3 years in Japan as a Manufacturing Operations Coordinator at OMRON Corporation — an experience that sharpened my precision, process discipline, and cross-cultural communication." data-th="ก่อนก้าวสู่บทบาทด้านผลิตภัณฑ์ ฉันใช้เวลา 3 ปีในญี่ปุ่นที่ OMRON Corporation — ประสบการณ์นั้นหล่อหลอมความแม่นยำ วินัยในกระบวนการ และทักษะการสื่อสารข้ามวัฒนธรรม">Before stepping into product roles, I spent 3 years in Japan as a Manufacturing Operations Coordinator at OMRON Corporation — an experience that sharpened my precision, process discipline, and cross-cultural communication.</p>
+            <div class="about-meta">
+              <div class="meta-item">
+                <div class="ml" data-en="Current Role" data-th="ตำแหน่งปัจจุบัน">Current Role</div>
+                <div class="mv" data-en="Experience &amp; Platform Manager / PO" data-th="Experience &amp; Platform Manager / PO">Experience &amp; Platform Manager / PO</div>
+              </div>
+              <div class="meta-item">
+                <div class="ml" data-en="Company" data-th="บริษัท">Company</div>
+                <div class="mv">Noble Development PCL</div>
+              </div>
+              <div class="meta-item">
+                <div class="ml" data-en="Languages" data-th="ภาษา">Languages</div>
+                <div class="mv" data-en="Thai · English · Japanese" data-th="ไทย · อังกฤษ · ญี่ปุ่น">Thai · English · Japanese</div>
+              </div>
+              <div class="meta-item">
+                <div class="ml" data-en="Location" data-th="ที่ตั้ง">Location</div>
+                <div class="mv" data-en="Bangkok, Thailand" data-th="กรุงเทพฯ ประเทศไทย">Bangkok, Thailand</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ────────────────────── -->
+    <section id="experience" class="page">
+      <div class="exp-wrap">
+        <div class="ph">
+          <div class="ey" data-en="Career Journey" data-th="เส้นทางอาชีพ">Career Journey</div>
+          <h1 data-en-html="Work <em>Experience</em>" data-th-html="ประสบการณ์ <em>การทำงาน</em>">Work <em>Experience</em></h1>
+          <div class="ph-line"></div>
+        </div>
+
+        <!-- Job 1 -->
+        <div class="timeline-item">
+          <div class="t-date">
+            <div class="t-period">Feb 2021 — Present</div>
+            <div class="t-co">Noble Development PCL<br>Bangkok, Thailand</div>
+          </div>
+          <div>
+            <span class="t-badge" data-en="Promoted Apr 2023" data-th="เลื่อนตำแหน่ง เม.ย. 2566">Promoted Apr 2023</span>
+            <div class="t-role" data-en="Experience &amp; Platform Support Manager / Product Owner" data-th="ผู้จัดการฝ่ายสนับสนุนฯ / Product Owner">Experience &amp; Platform Support Manager / Product Owner</div>
+            <ul class="t-list">
+              <li data-en="Own &amp; manage full digital portfolio: POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment)" data-th="ดูแลพอร์ตโฟลิโอดิจิทัลทั้งหมด: POS (CRM, Booking, Contract, Transfer) และ Non-POS (Noble ID, Website, CMS, CDP, Payment)">Own &amp; manage full digital portfolio: POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment)</li>
+              <li data-en="Drive end-to-end delivery — requirements, HLR/DLR docs, UX/UI review (Figma), QA, UAT, training, go-live &amp; post-launch support" data-th="ขับเคลื่อนกระบวนการครบวงจร ตั้งแต่ Requirements, HLR/DLR, รีวิว UX/UI (Figma), QA, UAT, ฝึกอบรม, Go-Live จนถึงดูแลหลังเปิดตัว">Drive end-to-end delivery — requirements, HLR/DLR docs, UX/UI review (Figma), QA, UAT, training, go-live &amp; post-launch support</li>
+              <li data-en="Report directly to SVP and C-Level, translating business strategy into actionable product roadmaps" data-th="รายงานตรงต่อ SVP และ C-Level แปลกลยุทธ์ธุรกิจเป็นแผน Roadmap ที่ดำเนินการได้จริง">Report directly to SVP and C-Level, translating business strategy into actionable product roadmaps</li>
+              <li data-en="Enforce dual quality gates: Dev Demo ≥80% pass rate; lead final verification before every UAT cycle" data-th="บังคับใช้ Quality Gate คู่: Demo ≥80% ผ่านเกณฑ์; นำการตรวจสอบขั้นสุดท้ายก่อน UAT ทุกรอบ">Enforce dual quality gates: Dev Demo ≥80% pass rate; lead final verification before every UAT cycle</li>
+              <li data-en="Primary trainer for all system launches; go-to consultant for sales leadership on systems &amp; new initiatives" data-th="ผู้ฝึกอบรมหลักสำหรับทุกการเปิดตัวระบบ ที่ปรึกษาหลักของผู้บริหารฝ่ายขายด้านระบบและโครงการใหม่">Primary trainer for all system launches; go-to consultant for sales leadership on systems &amp; new initiatives</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="timeline-item">
+          <div class="t-date">
+            <div class="t-period">2017 — 2020</div>
+            <div class="t-co">OMRON Corporation<br>Shiga, Japan</div>
+          </div>
+          <div>
+            <div class="t-role" data-en="Manufacturing Operations Coordinator" data-th="ผู้ประสานงานฝ่ายปฏิบัติการการผลิต">Manufacturing Operations Coordinator</div>
+            <ul class="t-list">
+              <li data-en="Coordinated cross-departmental projects between Production and Manufacturing Engineering divisions" data-th="ประสานงานโครงการข้ามแผนกระหว่างฝ่ายผลิตและวิศวกรรมการผลิต">Coordinated cross-departmental projects between Production and Manufacturing Engineering divisions</li>
+              <li data-en="Prepared production efficiency reports and performed product quality inspections" data-th="จัดทำรายงานประสิทธิภาพการผลิตและตรวจสอบคุณภาพผลิตภัณฑ์">Prepared production efficiency reports and performed product quality inspections</li>
+              <li data-en="Trained new interns; earned Basic Electronics Assembly Technician certification (Sep 2018)" data-th="ฝึกอบรมนักศึกษาฝึกงาน; ได้รับประกาศนียบัตร Basic Electronics Assembly Technician (ก.ย. 2561)">Trained new interns; earned Basic Electronics Assembly Technician certification (Sep 2018)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="timeline-item">
+          <div class="t-date">
+            <div class="t-period">2014 — 2017</div>
+            <div class="t-co">Continental City Co., Ltd.<br>(Noble Dev. Subsidiary)</div>
+          </div>
+          <div>
+            <div class="t-role" data-en="IT Coordinator (Officer)" data-th="ผู้ประสานงานด้านไอที">IT Coordinator (Officer)</div>
+            <ul class="t-list">
+              <li data-en="Coordinated IT operations across internal users, suppliers, vendors, and service providers" data-th="ประสานงานปฏิบัติการไอทีกับผู้ใช้ภายใน ซัพพลายเออร์ เวนเดอร์ และผู้ให้บริการ">Coordinated IT operations across internal users, suppliers, vendors, and service providers</li>
+              <li data-en="Managed annual IT planning and budget allocation; trained users on all organizational systems" data-th="บริหารแผนงานและงบประมาณไอทีประจำปี ฝึกอบรมผู้ใช้ทุกระบบขององค์กร">Managed annual IT planning and budget allocation; trained users on all organizational systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job 4 -->
+        <div class="timeline-item">
+          <div class="t-date">
+            <div class="t-period">2010 — 2014</div>
+            <div class="t-co">Continental City Co., Ltd.</div>
+          </div>
+          <div>
+            <div class="t-role" data-en="Systems Tester (Intern / Part-time)" data-th="ผู้ทดสอบระบบ (นักศึกษาฝึกงาน / พาร์ทไทม์)">Systems Tester (Intern / Part-time)</div>
+            <ul class="t-list">
+              <li data-en="Tested enterprise systems and provided user consultation on software usage during undergraduate studies" data-th="ทดสอบระบบองค์กรและให้คำปรึกษาการใช้ซอฟต์แวร์แก่ผู้ใช้ระหว่างการศึกษาปริญญาตรี">Tested enterprise systems and provided user consultation on software usage during undergraduate studies</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── KEY PROJECTS ── -->
+        <div class="proj-section">
+          <div class="ph">
+            <div class="ey" data-en="Highlighted Work" data-th="ผลงานที่ภาคภูมิใจ">Highlighted Work</div>
+            <h1 data-en-html="Key <em>Projects</em>" data-th-html="โครงการ <em>สำคัญ</em>">Key <em>Projects</em></h1>
+            <div class="ph-line"></div>
+          </div>
+          <div class="proj-grid">
+
+            <!-- POS -->
+            <div class="proj-card" onclick="openProject('pos')">
+              <img class="proj-card-img" src="Project_POS.png" alt="POS System">
+              <div class="proj-card-body">
+                <div class="proj-card-tag" data-en="Noble Development PCL · 2021–Present" data-th="Noble Development PCL · 2564–ปัจจุบัน">Noble Development PCL · 2021–Present</div>
+                <div class="proj-card-name" data-en="POS Ecosystem — First Product Owner" data-th="ระบบ POS — Product Owner คนแรก">POS Ecosystem — First Product Owner</div>
+                <div class="proj-card-sum" data-en="Appointed as the first-ever PO overseeing 18 modules across the entire property sales journey, managing 100+ RFC and New Business projects." data-th="ได้รับการแต่งตั้งเป็น PO คนแรก ดูแล 18 Module ครอบคลุมกระบวนการขายอสังหาฯ ทั้งหมด บริหาร RFC และ New Business กว่า 100+ โครงการ">Appointed as the first-ever PO overseeing 18 modules across the entire property sales journey, managing 100+ RFC and New Business projects.</div>
+                <div class="proj-read" data-en="View Project" data-th="ดูรายละเอียด">View Project</div>
+              </div>
+            </div>
+
+            <!-- ERP -->
+            <div class="proj-card" onclick="openProject('erp')">
+              <img class="proj-card-img" src="Project_ERP-1.png" alt="ERP Migration">
+              <div class="proj-card-body">
+                <div class="proj-card-tag" data-en="Noble Development PCL · 2023–2024" data-th="Noble Development PCL · 2566–2567">Noble Development PCL · 2023–2024</div>
+                <div class="proj-card-name" data-en="ERP Migration — Sales System PM" data-th="เปลี่ยนระบบ ERP — PM ฝั่งระบบงานขาย">ERP Migration — Sales System PM</div>
+                <div class="proj-card-sum" data-en="Led the POS–REM integration in a company-wide ERP overhaul (RMS → ICON Framework REM). 8–10 months, Go-Live May 15, 2024." data-th="นำการเชื่อมต่อ POS–REM ในการเปลี่ยน ERP ทั้งบริษัท (RMS → ICON Framework REM) 8–10 เดือน Go-Live 15 พ.ค. 2567">Led the POS–REM integration in a company-wide ERP overhaul (RMS → ICON Framework REM). 8–10 months, Go-Live May 15, 2024.</div>
+                <div class="proj-read" data-en="View Project" data-th="ดูรายละเอียด">View Project</div>
+              </div>
+            </div>
+
+            <!-- PRESALE -->
+            <div class="proj-card" onclick="openProject('presale')">
+              <img class="proj-card-img" src="Project_Presale-Epic-1.jpg" alt="Nue Epic Presale">
+              <div class="proj-card-body">
+                <div class="proj-card-tag" data-en="Noble Development PCL · 2023" data-th="Noble Development PCL · 2566">Noble Development PCL · 2023</div>
+                <div class="proj-card-name" data-en="Nue Epic Presale — Large-Scale Event" data-th="Nue Epic Presale — งาน Presale ขนาดใหญ่">Nue Epic Presale — Large-Scale Event</div>
+                <div class="proj-card-sum" data-en="Orchestrated a flagship presale event coordinating 100+ staff. Designed the full operation flow, built registration &amp; booking systems from scratch." data-th="จัดงาน Presale คอนโด Flagship ประสานทีมงาน 100+ คน ออกแบบ Operation Flow และพัฒนาระบบจอง+ลงทะเบียนตั้งแต่ต้น">Orchestrated a flagship presale event coordinating 100+ staff. Designed the full operation flow, built registration &amp; booking systems from scratch.</div>
+                <div class="proj-read" data-en="View Project" data-th="ดูรายละเอียด">View Project</div>
+              </div>
+            </div>
+
+            <!-- NON-POS -->
+            <div class="proj-card" onclick="openProject('nonpos')">
+              <img class="proj-card-img" src="Project_noble%20ID.jpg" alt="Non-POS Portfolio">
+              <div class="proj-card-body">
+                <div class="proj-card-tag" data-en="Noble Development PCL · May 2025" data-th="Noble Development PCL · พ.ค. 2568">Noble Development PCL · May 2025</div>
+                <div class="proj-card-name" data-en="Non-POS Portfolio Takeover" data-th="รับโอน Non-POS Portfolio ทั้งหมด">Non-POS Portfolio Takeover</div>
+                <div class="proj-card-sum" data-en="Assumed sole ownership of Noble ID, Website, CMS, CDP &amp; Payment when the previous PO resigned — becoming the company's only PO for all digital products." data-th="รับโอนความรับผิดชอบ Noble ID, Website, CMS, CDP และ Payment ทั้งหมดเมื่อ PO คนก่อนลาออก กลายเป็น PO เพียงคนเดียวของดิจิทัลทั้งบริษัท">Assumed sole ownership of Noble ID, Website, CMS, CDP &amp; Payment when the previous PO resigned — becoming the company's only PO for all digital products.</div>
+                <div class="proj-read" data-en="View Project" data-th="ดูรายละเอียด">View Project</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── SKILLS ────────────────────────── -->
+    <section id="skills" class="page">
+      <div class="skills-wrap">
+        <div class="ph">
+          <div class="ey" data-en="Capabilities" data-th="ความสามารถ">Capabilities</div>
+          <h1 data-en-html="Skills <em>&amp; Tools</em>" data-th-html="ทักษะ <em>และเครื่องมือ</em>">Skills <em>&amp; Tools</em></h1>
+          <div class="ph-line"></div>
+        </div>
+        <div class="skills-3col">
+          <div class="sk-cat">
+            <h3 data-en="Management" data-th="บริหารจัดการ">Management</h3>
+            <div class="sk-tags">
+              <span class="sk-tag">Product Ownership</span>
+              <span class="sk-tag">Project Management</span>
+              <span class="sk-tag">Stakeholder Management</span>
+              <span class="sk-tag">Team Leadership</span>
+              <span class="sk-tag">QA &amp; QA Gate</span>
+              <span class="sk-tag">User Training</span>
+              <span class="sk-tag">Change Management</span>
+              <span class="sk-tag">Budget Planning</span>
+            </div>
+          </div>
+          <div class="sk-cat">
+            <h3 data-en="Technical" data-th="เทคนิค">Technical</h3>
+            <div class="sk-tags">
+              <span class="sk-tag">SQL / Database Querying</span>
+              <span class="sk-tag">System Integration (POS-ERP)</span>
+              <span class="sk-tag">Data Migration</span>
+              <span class="sk-tag">UAT &amp; Test Management</span>
+              <span class="sk-tag">API &amp; Process Integration</span>
+              <span class="sk-tag">UX/UI Review (Figma)</span>
+              <span class="sk-tag">E-Learning Development</span>
+            </div>
+          </div>
+          <div class="sk-cat">
+            <h3 data-en="Tools" data-th="เครื่องมือ">Tools</h3>
+            <div class="sk-tags">
+              <span class="sk-tag">Figma</span>
+              <span class="sk-tag">Monday.com</span>
+              <span class="sk-tag">Draw.io</span>
+              <span class="sk-tag">Canva</span>
+              <span class="sk-tag">MS Office Suite</span>
+              <span class="sk-tag">AI Tools</span>
+              <span class="sk-tag">Photoshop</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="lang-section">
+          <div class="lang-section-title" data-en="Languages" data-th="ภาษา">Languages</div>
+          <div class="lang-row">
+            <div class="lang-item">
+              <div class="lname" data-en="Thai" data-th="ภาษาไทย">Thai</div>
+              <div class="llvl" data-en="Native" data-th="ภาษาแม่">Native</div>
+              <div class="lang-bar"><div class="lang-bar-f" style="width:100%"></div></div>
+            </div>
+            <div class="lang-item">
+              <div class="lname" data-en="English" data-th="ภาษาอังกฤษ">English</div>
+              <div class="llvl" data-en="Working Proficiency" data-th="ระดับทำงาน">Working Proficiency</div>
+              <div class="lang-bar"><div class="lang-bar-f" style="width:75%"></div></div>
+            </div>
+            <div class="lang-item">
+              <div class="lname" data-en="Japanese" data-th="ภาษาญี่ปุ่น">Japanese</div>
+              <div class="llvl" data-en="Conversational (3 yrs in Japan)" data-th="สนทนาได้ (3 ปีในญี่ปุ่น)">Conversational (3 yrs in Japan)</div>
+              <div class="lang-bar"><div class="lang-bar-f" style="width:50%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div>
+          <div class="cert-ph">
+            <div class="cert-ph-ey" data-en="Credentials" data-th="วุฒิบัตรและใบรับรอง">Credentials</div>
+            <h2 data-en="Certifications" data-th="ใบรับรอง">Certifications</h2>
+            <div class="cert-ph-line"></div>
+          </div>
+
+          <!-- CompTIA Project+ -->
+          <div class="cert-item" onclick="openPdf('CompTIA Project+ certificate.pdf','CompTIA Project+')">
+            <img class="cert-logo" src="Skills_Project+-png.png" alt="CompTIA Project+">
+            <div class="cert-info">
+              <div class="cert-name">CompTIA Project+</div>
+              <div class="cert-meta" data-en="Issued Jul 2025" data-th="ออกให้ ก.ค. 2568">Issued Jul 2025</div>
+            </div>
+            <div class="cert-hint" data-en="View PDF →" data-th="ดู PDF →">View PDF →</div>
+          </div>
+
+          <!-- CompTIA Security+ -->
+          <div class="cert-item" onclick="openPdf('CompTIA Security+ ce certificate.pdf','CompTIA Security+ (SY0-601)')">
+            <img class="cert-logo" src="Skills_Security+-png.png" alt="CompTIA Security+">
+            <div class="cert-info">
+              <div class="cert-name">CompTIA Security+ (SY0-601)</div>
+              <div class="cert-meta" data-en="Issued Jul 2024 · Valid through Jul 2027" data-th="ออกให้ ก.ค. 2567 · ใช้ได้ถึง ก.ค. 2570">Issued Jul 2024 · Valid through Jul 2027</div>
+            </div>
+            <div class="cert-hint" data-en="View PDF →" data-th="ดู PDF →">View PDF →</div>
+          </div>
+
+          <!-- Japan Certificate -->
+          <div class="cert-item" onclick="openPdf('Certificate_Japan.pdf','Basic Electronics Assembly Technician')">
+            <img class="cert-logo-round" src="Skills_flag_Japan.png" alt="Japan">
+            <div class="cert-info">
+              <div class="cert-name">Basic Electronics Assembly Technician</div>
+              <div class="cert-meta" data-en="Japan · Sep 2018" data-th="ญี่ปุ่น · ก.ย. 2561">Japan · Sep 2018</div>
+            </div>
+            <div class="cert-hint" data-en="View PDF →" data-th="ดู PDF →">View PDF →</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EDUCATION ─────────────────────── -->
+    <section id="education" class="page">
+      <div class="edu-wrap">
+        <div class="ph">
+          <div class="ey" data-en="Academic Background" data-th="ประวัติการศึกษา">Academic Background</div>
+          <h1 data-en="Education" data-th="การศึกษา">Education</h1>
+          <div class="ph-line"></div>
+        </div>
+        <div class="edu-cards">
+          <div class="edu-card">
+            <div class="edu-deg">M.Sc. Information Technology Management (ITM)</div>
+            <div class="edu-school" data-en="NIDA — National Institute of Development Administration · Faculty of Applied Statistics" data-th="สถาบันบัณฑิตพัฒนบริหารศาสตร์ (NIDA) · คณะสถิติประยุกต์">NIDA — National Institute of Development Administration · Faculty of Applied Statistics</div>
+            <div class="edu-chips">
+              <span class="edu-chip">2024 — 2026</span>
+              <span class="edu-chip">GPA 3.74</span>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-deg">B.Sc. Information Technology</div>
+            <div class="edu-school" data-en="Southeast Bangkok College" data-th="วิทยาลัยเทคโนโลยีฐานเอเชีย (Southeast Bangkok College)">Southeast Bangkok College</div>
+            <div class="edu-chips">
+              <span class="edu-chip">2010 — 2014</span>
+              <span class="edu-chip" data-en="First Class Honors" data-th="เกียรตินิยมอันดับหนึ่ง">First Class Honors</span>
+              <span class="edu-chip">GPA 3.66</span>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-deg" data-en="Vocational Certificate, Business Computer" data-th="ประกาศนียบัตรวิชาชีพ (ปวช.) คอมพิวเตอร์ธุรกิจ">Vocational Certificate, Business Computer</div>
+            <div class="edu-school" data-en="Attawit Commercial Technology College" data-th="วิทยาลัยเทคโนโลยีอรรถวิทย์พาณิชยการ">Attawit Commercial Technology College</div>
+            <div class="edu-chips">
+              <span class="edu-chip">2007 — 2010</span>
+              <span class="edu-chip">GPA 3.62</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ───────────────────────── -->
+    <section id="contact" class="page">
+      <div class="contact-wrap">
+        <div class="ph">
+          <div class="ey" data-en="Get In Touch" data-th="ติดต่อ">Get In Touch</div>
+          <h1 data-en-html="Let's <em>Connect</em>" data-th-html="มาคุย <em>กันเถอะ</em>">Let's <em>Connect</em></h1>
+          <div class="ph-line"></div>
+        </div>
+        <p class="contact-quote" data-en="&ldquo;I'm always open to meaningful conversations about product, technology, and new opportunities.&rdquo;" data-th="&ldquo;ยินดีเสมอที่จะพูดคุยเกี่ยวกับผลิตภัณฑ์ เทคโนโลยี และโอกาสใหม่ๆ ที่น่าสนใจ&rdquo;">&ldquo;I'm always open to meaningful conversations about product, technology, and new opportunities.&rdquo;</p>
+        <div class="contact-cards">
+          <a class="contact-card" href="mailto:7.ketkan0k@gmail.com">
+            <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+            <div><div class="cc-lbl" data-en="Email" data-th="อีเมล">Email</div><div class="cc-val">7.ketkan0k@gmail.com</div></div>
+          </a>
+          <a class="contact-card" href="tel:0926461283">
+            <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+            <div><div class="cc-lbl" data-en="Phone" data-th="โทรศัพท์">Phone</div><div class="cc-val">092-646-1283</div></div>
+          </a>
+          <a class="contact-card" href="https://linkedin.com/in/ketkanok-jongcham" target="_blank">
+            <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div><div class="cc-lbl">LinkedIn</div><div class="cc-val">linkedin.com/in/ketkanok-jongcham</div></div>
+          </a>
+          <div class="contact-card" style="pointer-events:none;">
+            <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+            <div><div class="cc-lbl" data-en="Location" data-th="ที่ตั้ง">Location</div><div class="cc-val" data-en="Samsen Nai, Phaya Thai, Bangkok" data-th="สามเสนใน พญาไท กรุงเทพฯ">Samsen Nai, Phaya Thai, Bangkok</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ══ PDF MODAL ══ -->
+<div class="modal-overlay hidden" id="pdfModal">
+  <div class="pdf-wrap">
+    <div class="pdf-hdr">
+      <span class="pdf-hdr-title" id="pdfTitle">Certificate</span>
+      <button class="modal-close-btn" onclick="closePdf()">✕</button>
+    </div>
+    <div class="pdf-frame-wrap" id="pdfFrameWrap">
+      <iframe class="pdf-iframe" id="pdfIframe" src=""></iframe>
+      <div class="pdf-wm" id="pdfWm"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROJECT MODAL ══ -->
+<div class="modal-overlay hidden" id="projModal">
+  <div class="proj-wrap">
+    <div class="proj-hdr">
+      <span class="proj-hdr-tag" id="projTag"></span>
+      <button class="modal-close-btn" onclick="closeProj()">✕</button>
+    </div>
+    <div class="proj-body" id="projBody"></div>
+  </div>
+</div>
+
+<script>
+  /* ────────────────────────────
+     LANGUAGE SYSTEM
+  ──────────────────────────── */
+  let curLang = 'en';
+
+  function setLang(lang) {
+    curLang = lang;
+    // Text nodes
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = lang === 'th' ? (el.dataset.th || el.dataset.en) : el.dataset.en;
+    });
+    // HTML nodes (em tags etc.)
+    document.querySelectorAll('[data-en-html]').forEach(el => {
+      el.innerHTML = lang === 'th' ? (el.dataset.thHtml || el.dataset.enHtml) : el.dataset.enHtml;
+    });
+    // Lang buttons
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    document.documentElement.lang = lang === 'th' ? 'th' : 'en';
+  }
+
+  /* ────────────────────────────
+     NAVIGATION
+  ──────────────────────────── */
+  function navigate(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('nav a, .mob-nav a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === pageId);
+    });
+    document.querySelector('.main').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Sidebar nav links
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      if (a.dataset.page) navigate(a.dataset.page);
+    });
+  });
+
+  // Home CTA
+  document.querySelector('.home-cta').addEventListener('click', e => {
+    e.preventDefault();
+    navigate('contact');
+  });
+
+  /* ────────────────────────────
+     MOBILE NAV
+  ──────────────────────────── */
+  function toggleMobNav() {
+    const nav = document.getElementById('mobNav');
+    const ham = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    ham.classList.toggle('open');
+  }
+
+  function navMob(pageId, el) {
+    navigate(pageId);
+    document.getElementById('mobNav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  document.querySelectorAll('.mob-nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      if (a.dataset.page) navMob(a.dataset.page, a);
+    });
+  });
+
+  /* ────────────────────────────
+     PDF VIEWER WITH WATERMARK
+  ──────────────────────────── */
+  function buildWatermark(container) {
+    const w = container.offsetWidth || 800;
+    const h = container.offsetHeight || 600;
+    const wm = document.getElementById('pdfWm');
+    wm.innerHTML = '';
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+    const defs = document.createElementNS(svgNS, 'defs');
+    const pat = document.createElementNS(svgNS, 'pattern');
+    pat.setAttribute('id', 'wmPat');
+    pat.setAttribute('x', '0'); pat.setAttribute('y', '0');
+    pat.setAttribute('width', '320'); pat.setAttribute('height', '130');
+    pat.setAttribute('patternUnits', 'userSpaceOnUse');
+    pat.setAttribute('patternTransform', 'rotate(-30)');
+    const txt = document.createElementNS(svgNS, 'text');
+    txt.setAttribute('x', '10'); txt.setAttribute('y', '75');
+    txt.setAttribute('font-family', 'Georgia, serif');
+    txt.setAttribute('font-size', '15');
+    txt.setAttribute('fill', 'rgba(26,39,68,0.12)');
+    txt.setAttribute('font-weight', 'bold');
+    txt.setAttribute('letter-spacing', '2');
+    txt.textContent = 'Ketkanok Jongcham';
+    pat.appendChild(txt);
+    defs.appendChild(pat);
+    svg.appendChild(defs);
+    const rect = document.createElementNS(svgNS, 'rect');
+    rect.setAttribute('width', '100%'); rect.setAttribute('height', '100%');
+    rect.setAttribute('fill', 'url(#wmPat)');
+    svg.appendChild(rect);
+    wm.appendChild(svg);
+  }
+
+  function openPdf(filename, title) {
+    const modal = document.getElementById('pdfModal');
+    document.getElementById('pdfTitle').textContent = title || filename;
+    document.getElementById('pdfIframe').src = filename;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => buildWatermark(document.getElementById('pdfFrameWrap')));
+  }
+
+  function closePdf() {
+    document.getElementById('pdfModal').classList.add('hidden');
+    document.getElementById('pdfIframe').src = '';
+    document.body.style.overflow = '';
+  }
+
+  /* ────────────────────────────
+     PROJECT MODAL
+  ──────────────────────────── */
+  const projects = {
+    pos: {
+      tag_en: 'Noble Development PCL · 2021 — Present',
+      tag_th: 'Noble Development PCL · 2564 — ปัจจุบัน',
+      name_en: 'POS Ecosystem — First Product Owner',
+      name_th: 'ระบบ POS — Product Owner คนแรก',
+      period: 'Feb 2021 — Present',
+      images: ['Project_POS.png'],
+      desc_en: 'Appointed as Noble Development\'s first-ever dedicated Product Owner for the POS ecosystem — a mission-critical platform spanning 18 modules that powers every step of the property sales journey, from customer registration and unit booking to contract execution and ownership transfer. During this tenure, the backlog grew to include over 100 RFC (Request for Change) and New Business initiatives, each requiring full end-to-end ownership: requirement analysis, UX/UI review in Figma, development coordination, quality gate enforcement, UAT management, and user training. This role established the foundational product standards, documentation practices, and QA processes that remain in use across the portfolio today.',
+      desc_th: 'ได้รับการแต่งตั้งเป็น Product Owner คนแรกที่รับผิดชอบระบบ POS ของ Noble Development อย่างเต็มตัว — แพลตฟอร์มหลักที่ครอบคลุม 18 Module ขับเคลื่อนทุกขั้นตอนของกระบวนการขายอสังหาริมทรัพย์ ตั้งแต่การลงทะเบียนลูกค้า การจองยูนิต การทำสัญญา จนถึงการโอนกรรมสิทธิ์ ตลอดระยะเวลาที่ดูแล มี RFC และ New Business สะสมกว่า 100+ โครงการ แต่ละโครงการต้องผ่านการบริหารครบวงจร ตั้งแต่วิเคราะห์ความต้องการ รีวิว UX/UI ใน Figma ประสานงานพัฒนา บังคับใช้ Quality Gate จัดการ UAT และฝึกอบรมผู้ใช้ บทบาทนี้วางรากฐาน Product Standard, แนวทางเอกสาร และกระบวนการ QA ที่ยังคงใช้งานอยู่ในทุกวันนี้',
+      bullets_en: [
+        '18 modules covering the full sales cycle: CRM → Booking → Contract → Transfer',
+        'Managed 100+ RFC and New Business projects end-to-end',
+        'Established HLR/DLR documentation standards used across the POS portfolio',
+        'Enforced dual quality gates: Dev Demo ≥80% pass rate before proceeding to UAT',
+        'Led user training sessions for sales staff on every major system release',
+        'Direct reporting line to SVP; aligned product direction with C-Level business priorities'
+      ],
+      bullets_th: [
+        '18 Module ครอบคลุมวงจรการขายทั้งหมด: CRM → Booking → Contract → Transfer',
+        'บริหาร RFC และ New Business กว่า 100+ โครงการครบวงจร',
+        'วางมาตรฐานเอกสาร HLR/DLR ที่ใช้งานทั่วพอร์ตโฟลิโอ POS',
+        'บังคับใช้ Quality Gate คู่: Demo ≥80% ก่อนดำเนินการ UAT',
+        'นำการฝึกอบรมพนักงานขายในทุก Major Release',
+        'รายงานตรงต่อ SVP; จัดแนวทิศทาง Product ให้สอดคล้องกับกลยุทธ์ C-Level'
+      ],
+      tags: ['Product Ownership', 'POS System', '18 Modules', 'Figma', 'QA Gate', 'UAT']
+    },
+    erp: {
+      tag_en: 'Noble Development PCL · 2023–2024',
+      tag_th: 'Noble Development PCL · 2566–2567',
+      name_en: 'ERP Migration — Sales System PM',
+      name_th: 'เปลี่ยนระบบ ERP — PM ฝั่งระบบงานขาย',
+      period: '~Aug 2023 — May 15, 2024',
+      images: ['Project_ERP-1.png'],
+      desc_en: 'Served as Project Manager for the sales system workstream in Noble Development\'s largest-ever IT transformation — a full enterprise ERP migration from the legacy RMS platform to the new ICON Framework (REM). This initiative required meticulous coordination across technology, business, and operations teams to ensure a seamless transition without disrupting ongoing sales activities. Managed the complex technical integration between the existing POS ecosystem and the new REM system, overseeing data mapping, migration validation, regression testing, and end-user training. The project ran for approximately 8–10 months and concluded with a flawless Go-Live on May 15, 2024. Now recognized internally as the company\'s subject matter expert on POS–REM integration.',
+      desc_th: 'รับบทบาท Project Manager ฝั่งระบบงานขายในโครงการ IT Transformation ครั้งใหญ่ที่สุดของ Noble Development — การเปลี่ยนระบบ ERP ทั้งบริษัทจากแพลตฟอร์ม RMS เดิมสู่ ICON Framework (REM) ใหม่ โครงการนี้ต้องการการประสานงานอย่างละเอียดระหว่างทีมเทคโนโลยี ธุรกิจ และปฏิบัติการ เพื่อให้การเปลี่ยนผ่านราบรื่นโดยไม่กระทบกิจกรรมขายที่ดำเนินอยู่ บริหารการเชื่อมต่อทางเทคนิคที่ซับซ้อนระหว่างระบบ POS กับ REM ดูแล Data Mapping, Migration Validation, Regression Testing และการฝึกอบรมผู้ใช้ทั่วทั้งองค์กร โครงการใช้เวลา ~8–10 เดือน สิ้นสุดด้วย Go-Live ที่สำเร็จในวันที่ 15 พฤษภาคม 2567 และปัจจุบันได้รับการยอมรับเป็น Subject Matter Expert ด้าน POS–REM Integration ของบริษัท',
+      bullets_en: [
+        'Led sales system workstream across the full RMS → REM migration',
+        'Managed POS–REM integration: technical mapping, API alignment, and data validation',
+        'Oversaw complete data migration and integrity verification',
+        'Coordinated regression and UAT testing across all affected modules',
+        'Planned and executed company-wide user training program pre-Go-Live',
+        'Successful Go-Live on May 15, 2024 — zero critical incidents on launch day'
+      ],
+      bullets_th: [
+        'นำ Workstream ระบบงานขายตลอดการเปลี่ยน RMS → REM',
+        'บริหาร POS–REM Integration: Technical Mapping, API Alignment และ Data Validation',
+        'ดูแล Data Migration และการตรวจสอบความถูกต้องของข้อมูลครบถ้วน',
+        'ประสาน Regression Testing และ UAT ทุก Module ที่ได้รับผลกระทบ',
+        'วางแผนและดำเนินการฝึกอบรมผู้ใช้ทั่วทั้งองค์กรก่อน Go-Live',
+        'Go-Live สำเร็จวันที่ 15 พ.ค. 2567 — ไม่มี Critical Incident วันเปิดตัว'
+      ],
+      tags: ['Project Management', 'ERP Migration', 'RMS → REM', 'POS Integration', 'Data Migration', 'ICON Framework']
+    },
+    presale: {
+      tag_en: 'Noble Development PCL · 2023',
+      tag_th: 'Noble Development PCL · 2566',
+      name_en: 'Nue Epic Presale — Large-Scale Event',
+      name_th: 'Nue Epic Presale — งาน Presale ขนาดใหญ่',
+      period: '2023',
+      images: ['Project_Presale-Epic-1.jpg', 'Project_Presale-Epic-2.jpg'],
+      desc_en: 'Planned and orchestrated a large-scale presale event for Nue Epic, a flagship high-rise condominium — a format Noble Development had not executed in years. Designed the entire operation flow from the ground up, built a custom booking and registration system tailored to the event\'s scale, and prepared a comprehensive training program with multiple run-through rehearsals to ensure 100+ staff were fully prepared. Served as the primary coordinator between the on-ground operations team and senior management, engaging directly with C-Level executives and Vice Presidents on event strategy, risk mitigation, and real-time decision-making. The event was executed flawlessly, establishing a new operational benchmark for future presale campaigns.',
+      desc_th: 'วางแผนและดำเนินงาน Presale ขนาดใหญ่สำหรับ Nue Epic คอนโดมิเนียม High-Rise เรือธง — รูปแบบงานที่ Noble Development ไม่ได้ดำเนินการมาหลายปี ออกแบบกระบวนการดำเนินงานทั้งหมดตั้งแต่ต้น พัฒนาระบบจองและลงทะเบียนเฉพาะสำหรับงานนี้ จัดทำแผนฝึกอบรมและซ้อม Run-through หลายรอบเพื่อเตรียมทีมงานกว่า 100 คนให้พร้อม ทำหน้าที่ผู้ประสานงานหลักระหว่างทีมปฏิบัติการและผู้บริหารระดับสูง ประสานงานโดยตรงกับ C-Level และ VP ด้านกลยุทธ์งาน การบริหารความเสี่ยง และการตัดสินใจเรียลไทม์ งานดำเนินอย่างราบรื่น สร้างมาตรฐานใหม่สำหรับ Presale Campaign ในอนาคต',
+      bullets_en: [
+        'Designed full operation flow for a single-day mass presale event from scratch',
+        'Developed custom booking and registration systems specifically for the event',
+        'Coordinated and trained a 100+ person team across multiple departments',
+        'Ran multiple rehearsals and run-throughs to ensure execution readiness',
+        'Direct liaison with C-Level and VP on strategy, risk, and escalations',
+        'Event executed without critical incidents — new operational benchmark established'
+      ],
+      bullets_th: [
+        'ออกแบบ Operation Flow สำหรับงาน Presale แบบ Single-Day ทั้งหมดตั้งแต่ต้น',
+        'พัฒนาระบบจองและลงทะเบียนเฉพาะสำหรับงานนี้โดยเฉพาะ',
+        'ประสานงานและฝึกอบรมทีมงานกว่า 100 คนจากหลายแผนก',
+        'ซ้อม Run-through หลายรอบเพื่อให้พร้อมดำเนินงาน',
+        'ประสานงานโดยตรงกับ C-Level และ VP ด้านกลยุทธ์ ความเสี่ยง และการ Escalation',
+        'งานดำเนินโดยไม่มี Critical Incident — สร้างมาตรฐานปฏิบัติการใหม่'
+      ],
+      tags: ['Event Operations', 'System Development', 'Stakeholder Management', 'Training', 'C-Level Coordination']
+    },
+    nonpos: {
+      tag_en: 'Noble Development PCL · May 2025',
+      tag_th: 'Noble Development PCL · พ.ค. 2568',
+      name_en: 'Non-POS Portfolio Takeover',
+      name_th: 'รับโอน Non-POS Portfolio ทั้งหมด',
+      period: 'May 2025 — Present',
+      images: ['Project_noble%20ID-1.png.gif', 'Project_noble%20ID.jpg', 'Project_web-Payment.gif', 'Project_Serve.png'],
+      logos: ['Project_Payment_Logo-master.png', 'Project_Payment_Logo-Visa.png', 'Project_Payment_Logo-Prompatpay.jpg'],
+      desc_en: 'When the previous Product Owner resigned in May 2025, assumed sole and immediate ownership of Noble Development\'s entire Non-POS digital ecosystem — becoming the company\'s only Product Owner responsible for all digital products simultaneously. The Non-POS portfolio encompasses Noble ID (the customer identity and authentication platform), Noble Home website (the primary marketing and lead generation channel), Content Management System (CMS), Customer Data Platform (CDP), and the Payment Installment system supporting multiple payment methods including credit cards, Visa, and PromptPay. This rapid transition required onboarding across multiple complex systems in parallel while maintaining full business continuity, establishing new development team relationships, and continuing active roadmap delivery without interruption.',
+      desc_th: 'เมื่อ Product Owner คนก่อนลาออกในเดือนพฤษภาคม 2568 รับโอนความรับผิดชอบดูแลระบบดิจิทัล Non-POS ทั้งหมดของ Noble Development ทันทีและแต่เพียงผู้เดียว กลายเป็น PO คนเดียวของบริษัทที่รับผิดชอบผลิตภัณฑ์ดิจิทัลทั้งหมดพร้อมกัน Non-POS Portfolio ครอบคลุม Noble ID (แพลตฟอร์มระบุตัวตนและยืนยันตัวลูกค้า), Noble Home Website (ช่องทางการตลาดและ Lead Generation หลัก), CMS (ระบบจัดการเนื้อหา), CDP (Customer Data Platform) และระบบผ่อนชำระที่รองรับหลายช่องทาง ทั้งบัตรเครดิต Visa และ PromptPay การเปลี่ยนผ่านอย่างรวดเร็วนี้ต้องการการเรียนรู้ระบบซับซ้อนหลายระบบพร้อมกัน ในขณะที่รักษาความต่อเนื่องทางธุรกิจ สร้างความสัมพันธ์กับทีมพัฒนาใหม่ และดำเนินการ Roadmap ต่อไปโดยไม่หยุดชะงัก',
+      bullets_en: [
+        'Assumed ownership of 5 platforms simultaneously: Noble ID, Website, CMS, CDP, Payment',
+        'Rapid cross-system onboarding while maintaining zero business continuity disruption',
+        'Established new communication frameworks with development teams across all platforms',
+        'Noble ID: Customer identity, authentication, and loyalty platform',
+        'Payment system: Supports credit card, Visa, and PromptPay channels',
+        'Serves as sole PO for the company\'s complete 8+ product digital portfolio'
+      ],
+      bullets_th: [
+        'รับโอน 5 แพลตฟอร์มพร้อมกัน: Noble ID, Website, CMS, CDP, Payment',
+        'Onboard ข้ามระบบอย่างรวดเร็วโดยไม่กระทบความต่อเนื่องทางธุรกิจ',
+        'สร้าง Framework การสื่อสารใหม่กับทีมพัฒนาทุกแพลตฟอร์ม',
+        'Noble ID: แพลตฟอร์มระบุตัวตน ยืนยันตัว และ Loyalty ของลูกค้า',
+        'ระบบ Payment: รองรับบัตรเครดิต Visa และ PromptPay',
+        'รับผิดชอบ Digital Portfolio ครบถ้วน 8+ ผลิตภัณฑ์เพียงคนเดียว'
+      ],
+      tags: ['Non-POS', 'Noble ID', 'Website', 'CMS', 'CDP', 'Payment System', 'PromptPay']
+    }
+  };
+
+  let activeThumb = 0;
+
+  function openProject(id) {
+    const p = projects[id];
+    const lang = curLang;
+    document.getElementById('projTag').textContent = lang === 'th' ? p.tag_th : p.tag_en;
+
+    // Build gallery HTML
+    const hasMultiple = p.images.length > 1;
+    let galleryHtml = `<img class="proj-main-img" id="projMainImg" src="${p.images[0]}" alt="Project">`;
+    if (hasMultiple) {
+      galleryHtml += `<div class="proj-thumbs">` + p.images.map((img, i) =>
+        `<img class="proj-thumb${i===0?' act':''}" src="${img}" onclick="swapThumb(this,'${img}')" alt="img${i}">`
+      ).join('') + `</div>`;
+    }
+
+    const bullets = (lang === 'th' ? p.bullets_th : p.bullets_en).map(b => `<li>${b}</li>`).join('');
+    const tags = p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('');
+    const logos = p.logos ? `<div class="proj-logos">${p.logos.map(l => `<img class="proj-logo" src="${l}" alt="">`).join('')}</div>` : '';
+
+    document.getElementById('projBody').innerHTML = `
+      <div class="proj-gallery">${galleryHtml}</div>
+      <div class="proj-content">
+        <div class="proj-modal-name">${lang === 'th' ? p.name_th : p.name_en}</div>
+        <div class="proj-modal-period">${p.period}</div>
+        <div class="proj-modal-desc">${lang === 'th' ? p.desc_th : p.desc_en}</div>
+        <ul class="proj-modal-list">${bullets}</ul>
+        ${logos}
+        <div class="proj-tags">${tags}</div>
+      </div>`;
+
+    document.getElementById('projModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function swapThumb(el, src) {
+    document.getElementById('projMainImg').src = src;
+    document.querySelectorAll('.proj-thumb').forEach(t => t.classList.remove('act'));
+    el.classList.add('act');
+  }
+
+  function closeProj() {
+    document.getElementById('projModal').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Close modals on overlay click
+  document.getElementById('pdfModal').addEventListener('click', function(e) {
+    if (e.target === this) closePdf();
+  });
+  document.getElementById('projModal').addEventListener('click', function(e) {
+    if (e.target === this) closeProj();
+  });
+
+  // ESC key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closePdf(); closeProj(); }
+  });
+</script>
+</body>
+</html>
