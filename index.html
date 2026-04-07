@@ -269,6 +269,7 @@
       width: fit-content; cursor: pointer;
     }
     .home-cta-secondary:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .home-cta-download svg { flex-shrink: 0; }
 
     /* ═══════════════════════
        ABOUT
@@ -817,6 +818,10 @@
         <div class="home-actions">
           <a class="home-cta" onclick="navigate('contact')">Let's Connect →</a>
           <a class="home-cta-secondary" onclick="navigate('about')">Explore My Work →</a>
+          <a class="home-cta-secondary home-cta-download" href="Ketkanok_Jongcham_Resume.pdf" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Resume
+          </a>
         </div>
       </div>
     </section>
@@ -1167,6 +1172,10 @@
             <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
             <div><div class="cc-lbl">Location</div><div class="cc-val">Samsen Nai, Phaya Thai, Bangkok</div></div>
           </div>
+          <a class="contact-card" href="Ketkanok_Jongcham_Resume.pdf" download>
+            <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+            <div><div class="cc-lbl">Resume</div><div class="cc-val">Download PDF</div></div>
+          </a>
         </div>
 
         <!-- Contact Form -->
