@@ -883,7 +883,9 @@
               <li>Own &amp; manage full digital portfolio: POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment)</li>
               <li>Drive end-to-end delivery — requirements, HLR/DLR docs, UX/UI review (Figma), QA, UAT, training, go-live &amp; post-launch support</li>
               <li>Report directly to SVP and C-Level, translating business strategy into actionable product roadmaps</li>
-              <li>Enforce dual quality gates: Dev Demo ≥80% pass rate; lead final verification before every UAT cycle</li>
+              <li>Enforce structured quality gates across development and UAT phases, ensuring every release meets acceptance criteria before go-live</li>
+              <li>Lead the Application Specialist team handling post-launch support — track and triage cases via Zoho, generate reports, analyze recurring issues, and drive solutions to prevent repeat incidents</li>
+              <li>Oversee cross-functional collaboration across backend, frontend, and data engineering teams to deliver product roadmaps on schedule</li>
               <li>Primary trainer for all system launches; go-to consultant for sales leadership on systems &amp; new initiatives</li>
             </ul>
           </div>
@@ -952,8 +954,8 @@
             <img class="proj-card-img" src="Project_POS.png" alt="POS System">
             <div class="proj-card-body">
               <div class="proj-card-tag">Noble Development PCL · 2021–Present</div>
-              <div class="proj-card-name">POS Ecosystem — First Product Owner</div>
-              <div class="proj-card-sum">Appointed as the first-ever PO overseeing 18 modules across the entire property sales journey, managing 100+ RFC and New Business projects.</div>
+              <div class="proj-card-name">POS Ecosystem — Product Owner</div>
+              <div class="proj-card-sum">Dedicated PO overseeing 18 modules across the entire property sales journey, managing 100+ RFC and New Business projects end-to-end.</div>
               <div class="proj-read">View Project</div>
             </div>
           </div>
@@ -971,7 +973,7 @@
 
           <!-- PRESALE -->
           <div class="proj-card" onclick="openProject('presale')">
-            <img class="proj-card-img" src="Project_Presale-Epic-1.jpg" alt="Nue Epic Presale">
+            <img class="proj-card-img" src="Project_Presale-Epic-3.jpg" alt="Nue Epic Presale">
             <div class="proj-card-body">
               <div class="proj-card-tag">Noble Development PCL · 2023</div>
               <div class="proj-card-name">Nue Epic Presale — Large-Scale Event</div>
@@ -1024,7 +1026,6 @@
               <span class="sk-tag">System Integration (POS-ERP)</span>
               <span class="sk-tag">Data Migration</span>
               <span class="sk-tag">UAT &amp; Test Management</span>
-              <span class="sk-tag">API &amp; Process Integration</span>
               <span class="sk-tag">UX/UI Review (Figma)</span>
               <span class="sk-tag">E-Learning Development</span>
             </div>
@@ -1034,11 +1035,11 @@
             <div class="sk-tags">
               <span class="sk-tag">Figma</span>
               <span class="sk-tag">Monday.com</span>
+              <span class="sk-tag">Zoho</span>
               <span class="sk-tag">Draw.io</span>
               <span class="sk-tag">Canva</span>
               <span class="sk-tag">MS Office Suite</span>
               <span class="sk-tag">AI Tools</span>
-              <span class="sk-tag">Photoshop</span>
             </div>
           </div>
         </div>
@@ -1338,15 +1339,15 @@
   const projects = {
     pos: {
       tag: 'Noble Development PCL · 2021 — Present',
-      name: 'POS Ecosystem — First Product Owner',
+      name: 'POS Ecosystem — Product Owner',
       period: 'Feb 2021 — Present',
       images: ['Project_POS.png'],
-      desc: 'Appointed as Noble Development\'s first-ever dedicated Product Owner for the POS ecosystem — a mission-critical platform spanning 18 modules that powers every step of the property sales journey, from customer registration and unit booking to contract execution and ownership transfer. During this tenure, the backlog grew to include over 100 RFC (Request for Change) and New Business initiatives, each requiring full end-to-end ownership: requirement analysis, UX/UI review in Figma, development coordination, quality gate enforcement, UAT management, and user training. This role established the foundational product standards, documentation practices, and QA processes that remain in use across the portfolio today.',
+      desc: 'Serving as the dedicated Product Owner for Noble Development\'s POS ecosystem — a mission-critical platform spanning 18 modules that powers every step of the property sales journey, from customer registration and unit booking to contract execution and ownership transfer. Over this tenure, the backlog grew to include over 100 RFC (Request for Change) and New Business initiatives, each requiring full end-to-end ownership: requirement analysis, UX/UI review in Figma, development coordination, quality gate enforcement, UAT management, and user training. This role established the foundational product standards, documentation practices, and QA processes that remain in use across the portfolio today.',
       bullets: [
         '18 modules covering the full sales cycle: CRM → Booking → Contract → Transfer',
         'Managed 100+ RFC and New Business projects end-to-end',
         'Established HLR/DLR documentation standards used across the POS portfolio',
-        'Enforced dual quality gates: Dev Demo ≥80% pass rate before proceeding to UAT',
+        'Enforce structured quality gates across development and UAT phases, ensuring every release meets acceptance criteria',
         'Led user training sessions for sales staff on every major system release',
         'Direct reporting line to SVP; aligned product direction with C-Level business priorities'
       ],
@@ -1372,7 +1373,7 @@
       tag: 'Noble Development PCL · 2023',
       name: 'Nue Epic Presale — Large-Scale Event',
       period: '2023',
-      images: ['Project_Presale-Epic-1.jpg', 'Project_Presale-Epic-2.jpg'],
+      images: ['Project_Presale-Epic-3.jpg', 'Project_Presale-Epic-1.jpg', 'Project_Presale-Epic-2.jpg'],
       desc: 'Planned and orchestrated a large-scale presale event for Nue Epic, a flagship high-rise condominium — a format Noble Development had not executed in years. Designed the entire operation flow from the ground up, built a custom booking and registration system tailored to the event\'s scale, and prepared a comprehensive training program with multiple run-through rehearsals to ensure 100+ staff were fully prepared. Served as the primary coordinator between the on-ground operations team and senior management, engaging directly with C-Level executives and Vice Presidents on event strategy, risk mitigation, and real-time decision-making. The event was executed flawlessly, establishing a new operational benchmark for future presale campaigns.',
       bullets: [
         'Designed full operation flow for a single-day mass presale event from scratch',
@@ -1505,7 +1506,7 @@
     emailjs.sendForm('service_mrl7oru', 'template_pc406an', form)
       .then(function() {
         status.className = 'cf-status success';
-        status.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+        status.textContent = 'Your message has been sent successfully! I will get back to you as soon as possible.';
         form.reset();
       })
       .catch(function(err) {
