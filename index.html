@@ -6,7 +6,7 @@
   <title>Ketkanok Jongcham — Portfolio</title>
   <meta name="description" content="Ketkanok Jongcham — Product Owner &amp; Project Manager with 5+ years delivering enterprise digital platforms (POS, ERP integration, CRM, Payment) in Bangkok.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Ketkanok Jongcham — Product Owner · Project Manager">
+  <meta property="og:title" content="Ketkanok Jongcham — Product Owner · Project Manager · Application Management · IT Business Partner">
   <meta property="og:description" content="5+ years delivering enterprise digital solutions, from concept to production.">
   <meta property="og:url" content="https://ketkan0k.github.io/portfolio/">
   <meta property="og:image" content="https://ketkan0k.github.io/portfolio/Pic_About.jpg">
@@ -343,6 +343,12 @@
       font-size: 1.4rem; color: var(--navy);
       font-weight: 500; margin-bottom: 0.85rem;
     }
+    .t-group { display: flex; flex-direction: column; }
+    .t-sub { position: relative; padding-left: 1.4rem; padding-bottom: 1.8rem; border-left: 2px solid var(--beige); }
+    .t-sub:last-child { padding-bottom: 0; }
+    .t-sub::before { content: ""; position: absolute; left: -6px; top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--cream); border: 2px solid var(--gold); }
+    .t-sub:first-child::before { background: var(--gold); }
+    .t-sub-date { font-size: 0.85rem; color: var(--gold); font-weight: 500; margin-bottom: 0.35rem; }
     .t-list { list-style: none; }
     .t-list li {
       font-size: 1.4rem; color: #575757; line-height: 1.8;
@@ -758,7 +764,7 @@
   <aside class="sidebar">
     <div class="sid-id">
       <div class="sid-name">Ketkanok<br>Jongcham</div>
-      <div class="sid-title">Product Owner · Project Manager</div>
+      <div class="sid-title" style="line-height:1.7;letter-spacing:0.1em;font-size:0.78rem;white-space:nowrap">Product Owner<br>Project Manager<br>Application Management<br>IT Business Partner</div>
     </div>
     <div class="sid-line"></div>
     <nav>
@@ -818,7 +824,7 @@
           </div>
           <div class="stat">
             <div class="n">100+</div>
-            <div class="l">Projects Delivered</div>
+            <div class="l">Change Requests &amp; Projects</div>
           </div>
         </div>
         <div class="home-actions">
@@ -852,7 +858,7 @@
             <div class="about-meta">
               <div class="meta-item">
                 <div class="ml">Current Role</div>
-                <div class="mv">Experience &amp; Platform Support Manager / PO</div>
+                <div class="mv">Head of Application Management / PO</div>
               </div>
               <div class="meta-item">
                 <div class="ml">Company</div>
@@ -887,11 +893,23 @@
             <div class="t-period">Feb 2021 — Present</div>
             <div class="t-co">Noble Development PCL<br>Bangkok, Thailand</div>
           </div>
-          <div>
-            <span class="t-badge">Promoted Apr 2023</span>
-            <div class="t-role">Experience &amp; Platform Support Manager / Product Owner</div>
+          <div class="t-group">
+            <div class="t-sub">
+              <div class="t-sub-date">Nov 2026 — Present</div>
+              <span class="t-badge">Current</span>
+            <div class="t-role">Head of Application Management · Product Owner</div>
             <ul class="t-list">
-              <li>Own &amp; manage full digital portfolio: POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment)</li>
+              <li>Head the Application Management Division for sales &amp; marketing systems — leading the Application Specialist team and directing development teams across all platform projects</li>
+              <li>Own &amp; manage the full digital portfolio: POS (CRM, Booking, Contract, Transfer) and Non-POS (Noble ID, Website, CMS, CDP, Payment)</li>
+              <li>Lead the CEO-sponsored Speed Up Contract project — API, online payment and e-signature integration with an overseas sales agent</li>
+            </ul>
+            </div>
+            <div class="t-sub">
+              <div class="t-sub-date">Apr 2023 — Oct 2026</div>
+              <span class="t-badge">Promoted Apr 2023</span>
+            <div class="t-role">Experience &amp; Platform Support Manager (Product Owner)</div>
+            <ul class="t-list">
+              <li>Product Owner for the POS ecosystem (18 modules); took over the Non-POS portfolio (Noble ID, Website, CMS, CDP, Payment) as sole PO in May 2025</li>
               <li>Drive end-to-end delivery — requirements, HLR/DLR docs, UX/UI review (Figma), QA, UAT, training, go-live &amp; post-launch support</li>
               <li>Report directly to SVP and C-Level, translating business strategy into actionable product roadmaps</li>
               <li>Enforce structured quality gates across development and UAT phases, ensuring every release meets acceptance criteria before go-live</li>
@@ -899,6 +917,16 @@
               <li>Oversee cross-functional collaboration across backend, frontend, and data engineering teams to deliver product roadmaps on schedule</li>
               <li>Primary trainer for all system launches; go-to consultant for sales leadership on systems &amp; new initiatives</li>
             </ul>
+            </div>
+            <div class="t-sub">
+              <div class="t-sub-date">Feb 2021 — Mar 2023</div>
+              <div class="t-role">Application Specialist</div>
+            <ul class="t-list">
+              <li>Supported sales users on the POS system — handled cases, troubleshot issues, and coordinated fixes with development teams</li>
+              <li>Executed UAT for POS releases and enhancements before go-live</li>
+              <li>Trained sales teams on new POS features and system launches</li>
+            </ul>
+            </div>
           </div>
         </div>
 
@@ -959,6 +987,17 @@
           <div class="ph-line"></div>
         </div>
         <div class="proj-grid">
+
+          <!-- SPEED UP CONTRACT -->
+          <div class="proj-card" onclick="openProject('speed')">
+            <img class="proj-card-img" src="Project_SpeedContract-1.jpg" alt="Speed Up Contract">
+            <div class="proj-card-body">
+              <div class="proj-card-tag">Noble Development PCL · 2026 · In Progress</div>
+              <div class="proj-card-name">Speed Up Contract — Agent Booking Integration</div>
+              <div class="proj-card-sum">CEO-sponsored integration with a Hong Kong sales agent to cut booking-to-contract time from 3–10 days to a 2-hour target, using APIs, online payment and e-signature.</div>
+              <div class="proj-read">View Project</div>
+            </div>
+          </div>
 
           <!-- POS -->
           <div class="proj-card" onclick="openProject('pos')">
@@ -1037,6 +1076,7 @@
               <span class="sk-tag">System Integration (POS-ERP)</span>
               <span class="sk-tag">Data Migration</span>
               <span class="sk-tag">UAT &amp; Test Management</span>
+              <span class="sk-tag">API Testing (Postman)</span>
               <span class="sk-tag">UX/UI Review (Figma)</span>
               <span class="sk-tag">E-Learning Development</span>
             </div>
@@ -1100,7 +1140,17 @@
             <img class="cert-logo" src="Skills_SecurityPlus.png" alt="CompTIA Security+">
             <div class="cert-info">
               <div class="cert-name">CompTIA Security+ (SY0-601)</div>
-              <div class="cert-meta">Issued Jul 2024 · Valid through Jul 2027</div>
+              <div class="cert-meta">Issued Jul 2024</div>
+            </div>
+            <div class="cert-hint">View PDF →</div>
+          </div>
+
+          <!-- Figma UI Workshop -->
+          <div class="cert-item" onclick="openPdf('Certificate_Figma_UI_TrueDigitalAcademy.pdf','DIY: User Interface with Figma')">
+            <img class="cert-logo" src="Cert_TrueDigitalAcademy.png" alt="True Digital Academy">
+            <div class="cert-info">
+              <div class="cert-name">DIY: User Interface with Figma</div>
+              <div class="cert-meta">True Digital Academy · Jul 2023</div>
             </div>
             <div class="cert-hint">View PDF →</div>
           </div>
@@ -1354,6 +1404,23 @@
      PROJECT MODAL
   ──────────────────────────── */
   const projects = {
+    speed: {
+      tag: 'Noble Development PCL · 2026 · In Progress',
+      name: 'Speed Up Contract — Agent Booking Integration',
+      period: 'Aug 2026 — Present (In Progress)',
+      images: ['Project_SpeedContract-1.jpg'],
+      desc: 'A CEO-sponsored initiative to shorten the time between an overseas agent booking and a signed sale contract. Under the old process, a Hong Kong–based international sales agent collected buyer documents and sent them to Noble, where the team re-keyed customer, unit and pricing data into POS before issuing the contract back — a 3–10 day wait. In 2025, roughly a quarter of agent-channel bookings (over 30% of booking value) were cancelled, and leadership wanted that window closed. As Project Manager / Product Owner, I designed an integration that lets the agent book directly against Noble\'s live inventory and pricing via API, collect payment through Noble\'s payment gateway, and receive RA/SPA contracts for online e-signature with email OTP. To align two companies before any code was written, I used AI to build a clickable demo simulating both systems end to end, which became the shared reference for scope decisions, API specs and training.',
+      bullets: [
+        'Worked directly with the CEO to turn the cancellation problem into a measurable target: booking to signed contract within 2 hours, down from 3–10 days',
+        'Built an AI-assisted interactive demo of both systems (agent app + Noble POS) to align business, IT and the overseas partner before development',
+        'Defined the end-to-end flow (21 steps, 6 phases) and API scope: 10 Noble APIs plus 4 partner APIs, delivered with mock APIs and Postman collections',
+        'Ran weekly syncs with the Hong Kong team — 6 sessions including on-site joint API testing in Bangkok — with bilingual minutes and a tracked issue list',
+        'Simplified the flow with stakeholders: removed 4 redundant fields, cut a duplicate review step, and set duplicate-customer rules (passport + country)',
+        'Coordinated legal review of e-signature validity and identity verification, plus payment settlement setup with the bank',
+        'Leading joint testing and user training for both the Noble and agent teams ahead of go-live'
+      ],
+      tags: ['Project Management', 'API Integration', 'Overseas Partner', 'e-Signature', 'AI Prototyping', 'Process Redesign']
+    },
     pos: {
       tag: 'Noble Development PCL · 2021 — Present',
       name: 'POS Ecosystem — Product Owner',
