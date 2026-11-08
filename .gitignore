@@ -1,0 +1,8 @@
+# Private / working files — do not publish
+~$*
+*.tmp
+.claude/
+Private_Documents/
+NIDA_*.pdf
+*ปตรี*.pdf
+*ป ตรี*.pdf
